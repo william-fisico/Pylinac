@@ -1,17 +1,12 @@
 import ConvertToDicom
 import matplotlib.pyplot as plt
 
-x = 'STRIPS.tif'
-y = 'novo.dcm'
-dcm = ConvertToDicom.picketfence(x,y)
+x = ['G0C0Y1','G0C0Y2']
 
-teste = ConvertToDicom.get_dicom()
-print(type(teste))
-
-plt.imshow(teste.pixel_array)
-plt.show()
-
-ConvertToDicom.save_dicom('teste_modulo.dcm')
+for nome in x:
+	dcm = ConvertToDicom.picketfence(nome + '.tif',nome + '.dcm')
+	ConvertToDicom.save_dicom(nome + '.dcm')
+	print(nome + '.dcm')
 
 '''
 Bibliografia modulos

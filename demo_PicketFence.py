@@ -7,12 +7,14 @@
 
 from pylinac import PicketFence
 
-pf_img = r"testeDicom.dcm"
+pf_img = ['G0C0Y1','G0C0Y2']
 #pf_img = r"EPID-PF-LR.dcm"
-pf = PicketFence(pf_img)
-pf.analyze(tolerance=0.05, action_tolerance=0.03, hdmlc = False)
-pf.plot_analyzed_image(leaf_error_subplot = False)
-print(pf.results())
+for nome in pf_img:
+	pf = PicketFence(nome + '.dcm')
+	pf.analyze(tolerance=0.05, action_tolerance=0.03, hdmlc = False)
+	pf.plot_analyzed_image(leaf_error_subplot = True)
+	print(pf.results())
+	pf.publish_pdf(filename = nome + '.pdf')
 
 '''
 #PicketFence.run_demo()

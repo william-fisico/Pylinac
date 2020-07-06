@@ -12,12 +12,12 @@ import pydicom
 from pydicom.data import get_testdata_files
 from pydicom.datadict import dictionary_VR
 
-filename = "imagem_dicom.dcm"
+filename = "G0C0Y1.dcm"
 ds = pydicom.dcmread(filename)
-ds.SOPInstanceUID = '1.2.246.352.81.3.273720375.51644.19651.179.0'
+#ds.SOPInstanceUID = '1.2.246.352.81.3.273720375.51644.19651.179.0'
 
-#plt.imshow(ds.pixel_array)
-#plt.show()
+plt.imshow(ds.pixel_array)
+plt.show()
 '''
 #print(ds) #http://dicom.nema.org/medical/dicom/current/output/chtml/part05/chapter_7.html#sect_7.1
 
@@ -92,8 +92,8 @@ print('--------------------')
 
 print('--------------------')
 '''
-print(ds)
-ds.save_as("testeDicom.dcm")
+#print(ds)
+#ds.save_as("testeDicom.dcm")
 
 #print(dictionary_VR([0x0008,0x0016]))
 

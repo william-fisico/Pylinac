@@ -8,7 +8,7 @@
 # no formato Tiff para Dicom. O módulo foi pensado    #
 # para tratar imagnes geradas pelo software Iview,    #
 # utilizado para aquisição de imagem planar em        #
-# aceleradores Elekta, e analisadas com auxilio da    #
+# aceleradores Elekta, e analisadas com auxílio da    #
 # biblioteca Pylinac                                  #
 #######################################################
 
@@ -37,7 +37,7 @@ def convert(nome_tiff, nome_dicom):
 	file_meta.MediaStorageSOPInstanceUID = "1.2.246.352.81.3.273720375.51644.19651.179.0"
 	file_meta.ImplementationClassUID = "1.2.246.352.70.2.1.160.3"
 
-	#Criando um dataset "vazio"
+	#Criando um dataset "vazio" ==> https://pydicom.github.io/pydicom/dev/reference/generated/pydicom.dataset.FileDataset.html
 	ds = FileDataset(filename_little_endian, {}, file_meta = file_meta, preamble = b"\0"*128)
 
 	#Adicionando elementos
@@ -80,7 +80,8 @@ def convert(nome_tiff, nome_dicom):
 	ds.add_new([0x5000,0x0030], 'SH', ['PIXL', 'PIXL']) #Axis Units
 
 	x = tiff_meta_dict['XResolution'][0]
-	x_res = 1/((x[0]/x[1])/25.4) # mm por pixel
+	### Rever resolução IVIEW
+	x_res = 1/((x[0]/x[1])/40.25) # mm por pixel
 
 	ds.add_new([0x3002,0x0011], 'DS', [x_res,x_res]) #Image Plane Pixel Spacing
 	print('Pronto!')
